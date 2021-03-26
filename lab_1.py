@@ -4,35 +4,31 @@ import random
 
 print("\n . : ¡Let's play Memorize! : . \n")
 
-#Creación del tablero con cartas solicitadas
+#Creación de/los mazos (cartas boca arriba y boca abajo(censuradas))
 
 size = int(input("- With how many cards would you like to play? -: "))
 while size <0:
     print("- Please enter a valid number-")
     size = int(input("-With how many cards would you like to play?-"))
 
-cards = []
-censor = []
+cardsup = []
+cardsdown = []
 for i in range (1,size+1):
-    cards.append(i)
-    cards.append(i)
-    random.shuffle(cards)
-    censor.append('X ')
-    censor.append('X ')
+    cardsup.append(i)
+    cardsup.append(i)
+    cardsdown.append('X ')
+    cardsdown.append('X ')
 
-def board(size,typeofboard):
-  if (size%3) == 0:
-      i = 0
-      board = []
-      while i<len(typeofboard):
-          board.append(typeofboard[i:i+3])
-          i+=3
-  elif(size%5) == 0:
-      i = 0
-      board =[]
-      while i<len(typeofboard):
-          board.append(typeofboard[i:i+5])
-          i+=5
+
+def board(size,typeofcard):
+  divisibility = [2,3,5]
+  for j in divisibility:
+    if (size%j) == 0:
+        i = 0
+        board = []
+        while i<len(typeofcard):
+            board.append(typeofcard[i:i+j])
+            i+=j  
   return board
 
 def display(board):
@@ -40,7 +36,7 @@ def display(board):
         print(i)
 
 print("\n. : Perfect! Lets begin. : . \n . : This is your board : .\n")
-display(board(size,censor))
+display(board(size,cardsdown))
 
 scorep1 = 0
 scorep2 = 0
@@ -49,10 +45,11 @@ keep_playing = 0 #Escribimos esto como condición para el loop del juego
 
 while keep_playing == 0:
     a = '1'
-    coords1 = input("\n-Player " + a + " select your card's coordinates. (Example: 0,1)-: ")
-
-
-
+    coords = input("\n-Player " + a + " select your card's coordinates. \n(Example: 0,0 for the first card on the top left corner)-: ")
+    n = int(coords[0])
+    m = int(coords[2])
+    board(size,cardsdown)[n][m] = board(size,cardsup)[n][m]
+    print(display(board(size,cardsdown)))
 
 
 
