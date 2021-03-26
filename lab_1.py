@@ -4,29 +4,47 @@ import random
 
 print("\n . : ¡Let's play Memorize! : . \n")
 
-#Creación del tablero con cartas
+#Creación del tablero con cartas solicitadas
 
 size = int(input("- With how many cards would you like to play? -: "))
 while size <0:
     print("- Please enter a valid number-")
     size = int(input("-With how many cards would you like to play?-"))
 
-def board(size):
-  board = []
-  censor = []
-  for i in range (1,size+1):
-    board.append(i)
-    board.append(i)
-    random.shuffle(board)
+cards = []
+censor = []
+for i in range (1,size+1):
+    cards.append(i)
+    cards.append(i)
+    random.shuffle(cards)
     censor.append('X ')
     censor.append('X ')
-  return censor
+
+def board(size,typeofboard):
+  if (size%3) == 0:
+      i = 0
+      board = []
+      while i<len(typeofboard):
+          board.append(typeofboard[i:i+3])
+          i+=3
+  elif(size%5) == 0:
+      i = 0
+      board =[]
+      while i<len(typeofboard):
+          board.append(typeofboard[i:i+5])
+          i+=5
+  return board
+
+def display(board):
+    for i in board:
+        print(i)
 
 print("\n. : Perfect! Lets begin. : . \n . : This is your board : .\n")
-print (board(size))
+display(board(size,censor))
 
 scorep1 = 0
 scorep2 = 0
+
 keep_playing = 0 #Escribimos esto como condición para el loop del juego
 
 while keep_playing == 0:
