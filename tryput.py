@@ -1,6 +1,6 @@
 import random
 
-size = 3
+size = 20
 
 cardsup = []
 cardsdown = []
@@ -41,9 +41,5 @@ def display(board):
         print(i)
 
 
-print(boardcardsdown(size))
-print(boardcardsup(size))
 
-cardsdown[0] = 3
-
-print(boardcardsdown(size))
+print(len(boardcardsdown(size)[0]))

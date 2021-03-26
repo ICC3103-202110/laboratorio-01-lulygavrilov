@@ -1,21 +1,20 @@
 import random
 
-#Inicio del juego
+#Beggining of the game
 
 print("\n . : ¡Let's play Memorize! : . \n")
 
-#Creación de/los mazos (cartas boca arriba y boca abajo(censuradas))
-
-size = int(input("- With how many cards would you like to play? -: "))
+size = int(input("- How many cards would you like to play with? -: "))
 while size <0:
     print("- Please enter a valid number-")
-    size = int(input("-With how many cards would you like to play?-"))
+    size = int(input("-How many cards would you like to play with?-"))
 
 cardsup = []
 cardsdown = []
 for i in range (1,size+1):
     cardsup.append(i)
     cardsup.append(i)
+    random.shuffle(cardsup)
     cardsdown.append('X ')
     cardsdown.append('X ')
 
@@ -35,21 +34,28 @@ def display(board):
     for i in board:
         print(i)
 
+print(cardsup)
 print("\n. : Perfect! Lets begin. : . \n . : This is your board : .\n")
 display(board(size,cardsdown))
+display(board(size,cardsup))
 
 scorep1 = 0
 scorep2 = 0
 
-keep_playing = 0 #Escribimos esto como condición para el loop del juego
+keep_playing = 0 #Loop condition for the game
 
 while keep_playing == 0:
     a = '1'
-    coords = input("\n-Player " + a + " select your card's coordinates. \n(Example: 0,0 for the first card on the top left corner)-: ")
-    n = int(coords[0])
+    coords = input("\n-Player " + a + " select your card's coordinates 'NºRow,NºColumn'. \n(Example: (0,0) for the first card on the top left corner)-: ")
+    n = int(coords[0])+1
     m = int(coords[2])
-    board(size,cardsdown)[n][m] = board(size,cardsup)[n][m]
-    print(display(board(size,cardsdown)))
+    x = (len(board(size,cardsdown)[0]))
+    y = (m*x)-x +n
+    print(y)
+    cardsdown[y] = cardsup[y]
+    display(board(size,cardsdown))
+
+    display(board(size,cardsdown))
 
 
 
