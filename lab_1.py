@@ -1,6 +1,5 @@
 import random
 
-#Beggining of the game
 
 print("\n . : ¡Let's play Memorize! : . \n")
 
@@ -37,7 +36,6 @@ def display(board):
 print(cardsup)
 print("\n. : Perfect! Lets begin. : . \n . : This is your board : .\n")
 display(board(size,cardsdown))
-display(board(size,cardsup))
 
 scorep1 = 0
 scorep2 = 0
@@ -53,11 +51,14 @@ while keep_playing == 0:
     y = (m*x)-x +n
     print(y)
     cardsdown[y] = cardsup[y]
+    cardofinterest = []
+    cardofinterest.append(cardsup[y])
     display(board(size,cardsdown))
+    cardsdown[y] = 'X'
 
-    display(board(size,cardsdown))
+    coords2 = input("\n-Guess where the second card is: ")
 
-
+    #I've failed here
 
     condition_to_continue = input("\n- Do you wish to keep playing? <Yes/No> - :")
     if condition_to_continue == 'No' or condition_to_continue == 'no':
@@ -77,3 +78,4 @@ else:
 print("\n. : Wohoo what a great game! Thank you for playing please come back soon. : .")
 
 
+#:(  
